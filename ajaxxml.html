@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax加载xml</title>
+</head>
+<body>
+<h2>Retrieve data from XML file</h2>
+<p><b>Status:</b><span id="A1"></span></p>
+<p><b>Status text:</b><span id="A2"></span></p>
+<p><b>Response:</b><span id="A3"></span></p>
+<button id="btn">Get XML data</button>
+<script>
+    btn.onclick=function(){
+        var request;
+        if(window.XMLHttpRequest){
+            request=new XMLHttpRequest;
+        }else{
+            request=new ActiveXObject("Mcirosoft.XMLHTTP");
+        }
+        request.open("GET","a.xml",true);
+        request.send();
+        request.onreadystatechange=function(){
+            if(request.readyState===4 && request.status===200){
+                //document.getElementById("A1").innerHTML=request.getAllResponseHeaders();    //检索资源（文件）的头信息。
+                //document.getElementById("A2").innerHTML="Last modified: " + request.getResponseHeader('Last-Modified');  //检索资源（文件）的指定头信息。
+                document.getElementById("A1").innerHTML=request.status;
+                document.getElementById("A2").innerHTML=request.statusText;
+                document.getElementById("A3").innerHTML=request.responseText;
+            }
+        }
+    }
+</script>
+</body>
+</html>

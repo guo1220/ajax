@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>改变文字内容</title>
+</head>
+<body>
+<div id="myDiv">
+    使用AJAX修改文本内容
+</div>
+<button type="button" id="btn">修改内容</button>
+<script>
+btn.onclick=function(){
+    var requset;
+    if(window.XMLHttpRequest){
+        requset=new XMLHttpRequest;
+    }else{
+        requset=new ActiveXObject("Mcirosoft.XMLHTTP");
+    }
+    requset.open("GET","ajax.txt",true);
+    requset.send();
+    requset.onreadystatechange=function(){
+        if(requset.readyState === 4 && requset.status ===200){
+            document.getElementById("myDiv").innerHTML=requset.responseText;
+        }
+    }
+}
+</script>
+
+</body>
+</html>
